@@ -1,4 +1,3 @@
--- start screen
 return {
   {
     "goolord/alpha-nvim",
