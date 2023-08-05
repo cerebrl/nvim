@@ -8,12 +8,12 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 -- TODO: testing
 require("lazy").setup({
-	{ 'echasnovski/mini.basics', version = false },
-	{ "echasnovski/mini.comment", version = false },
-	{ 'echasnovski/mini.cursorword', version = false },
-	{ "echasnovski/mini.move", version = false },
-	{ 'echasnovski/mini.splitjoin', version = false },
-	{ "echasnovski/mini.surround", version = false },
+  { "echasnovski/mini.basics", version = false },
+  { "echasnovski/mini.comment", version = false },
+  { "echasnovski/mini.cursorword", version = false },
+  { "echasnovski/mini.move", version = false },
+  { "echasnovski/mini.splitjoin", version = false },
+  { "echasnovski/mini.surround", version = false },
 })
 
 require("mini.basics").setup()
