@@ -24,6 +24,15 @@ return {
         -- Text
         colors.comment = "#6f7386"
       end,
+      on_highlights = function(hl, c)
+        -- Fix color and italics on the icons
+        -- Not declaring `italic` withing object resets to none
+        hl.NeoTreeGitConflict = { fg = c.fg_dark }
+        hl.NeoTreeGitIgnored = { fg = c.fg_dark }
+        hl.NeoTreeGitStaged = { fg = c.fg_dark }
+        hl.NeoTreeGitUnstaged = { fg = c.fg_dark }
+        hl.NeoTreeGitUntracked = { fg = c.fg_dark }
+      end,
     },
   },
 }
