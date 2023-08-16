@@ -4,6 +4,7 @@ return {
     opts = {
       options = {
         -- Always show tabs, even if there's just one open
+        -- This helps with the unsaved changes "dot" visual
         always_show_bufferline = true,
         -- Use smaller x for tabs
         buffer_close_icon = "✕",
@@ -15,27 +16,36 @@ return {
     },
   },
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    -- https://github.com/nvim-neo-tree/neo-tree.nvim#longer-example-for-packer
+    "folke/noice.nvim",
     opts = {
-      -- Would rather use a dedicated Git utility, rather than neotree
-      enable_git_status = true,
+      commands = {
+        history = {
+          view = "popup",
+        },
+      },
+    },
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    opts = {
       default_component_configs = {
-        icons = {},
         modified = {
+          -- This is a redundant symbol to the git status modified symbol below
           symbol = "",
         },
         name = {
+          -- I like a more uniform color in the file tree
           use_git_status_colors = false,
         },
         git_status = {
           -- A few icons use the old v2 NerdFont assignment, so some show as questionmarks
-          -- Replacements that are v3 compatible will be needed.
+          -- Below are replacements that are v3 compatible
           symbols = {
-            added = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
-            modified = "", -- or "", but this is redundant info if you use git_status_colors on the name
-            deleted = "✖", -- this can only be used in the git_status source
-            renamed = "r", -- this can only be used in the git_status source
+            added = "✚",
+            modified = "",
+            deleted = "✖",
+            renamed = "r",
+
             -- Status type
             untracked = "",
             ignored = "󰈉",

@@ -25,8 +25,8 @@ return {
         colors.comment = "#6f7386"
       end,
       on_highlights = function(hl, c)
-        -- Fix color and italics on the icons
-        -- Not declaring `italic` withing object resets to none
+        -- Fix color and remove italics on the Git icons
+        -- Not declaring `italic` withing object resets to normal
         hl.NeoTreeGitConflict = { fg = c.fg_dark }
         hl.NeoTreeGitIgnored = { fg = c.fg_dark }
         hl.NeoTreeGitStaged = { fg = c.fg_dark }

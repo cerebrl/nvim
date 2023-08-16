@@ -16,7 +16,7 @@ require("lazy").setup({
     -- add language servers here
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
-    -- { import = "lazyvim.plugins.extras.lang.tailwind" },
+    { import = "lazyvim.plugins.extras.lang.tailwind" },
     -- add linting plugins
     { import = "lazyvim.plugins.extras.linting.eslint" },
     -- add formatting plugins here
@@ -59,3 +59,7 @@ require("lazy").setup({
     },
   },
 })
+
+-- Setup additional plugins
+require("telescope").load_extension("file_browser")
+require("telescope").load_extension("project")

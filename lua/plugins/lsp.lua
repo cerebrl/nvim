@@ -29,7 +29,26 @@ return {
       },
       -- The below is to ensure eslint and eslint prettier plugin don't collide
       -- https://www.lazyvim.org/configuration/recipes#add-eslint-and-use-it-for-formatting
-      servers = { eslint = {} },
+      servers = {
+        eslint = {
+          -- Simplify root_patterns as it changes root_dir in monorepos with default config
+          root_dir = require("lspconfig").util.root_pattern(".git"),
+        },
+        tailwindcss = {
+          -- Simplify root_patterns as it changes root_dir in monorepos with default config
+          root_dir = require("lspconfig").util.root_pattern(
+            "tailwind.config.js",
+            "tailwind.config.cjs",
+            "tailwind.config.mjs",
+            "tailwind.config.ts",
+            -- Or, just fallback to `.git`
+            ".git"
+          ),
+        },
+        tsserver = {
+          root_dir = require("lspconfig").util.root_pattern(".git"),
+        },
+      },
       setup = {
         eslint = function()
           require("lazyvim.util").on_attach(function(client)
