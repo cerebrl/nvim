@@ -18,6 +18,9 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
+      -- Don't use LazyVim's prettier extra plugin as it uses prettierd,
+      -- which causes file trancation bug:
+      -- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/1609
       table.insert(opts.sources, nls.builtins.formatting.prettier)
     end,
   },

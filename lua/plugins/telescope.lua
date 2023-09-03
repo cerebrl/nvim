@@ -1,14 +1,21 @@
 return {
   {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-  },
-  {
-    "nvim-telescope/telescope-project.nvim",
+    "telescope.nvim",
     dependencies = {
-      "nvim-telescope/telescope.nvim",
-      "nvim-telescope/telescope-file-browser.nvim",
-      "nvim-lua/plenary.nvim",
+      {
+        "nvim-telescope/telescope-file-browser.nvim",
+      },
+      {
+        "nvim-telescope/telescope-project.nvim",
+        dependencies = {
+          "nvim-telescope/telescope-file-browser.nvim",
+        },
+      },
     },
+    opts = function()
+      local T = require("telescope")
+      T.load_extension("file_browser")
+      T.load_extension("project")
+    end,
   },
 }

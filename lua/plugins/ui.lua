@@ -16,16 +16,6 @@ return {
     },
   },
   {
-    "folke/noice.nvim",
-    opts = {
-      commands = {
-        history = {
-          view = "popup",
-        },
-      },
-    },
-  },
-  {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       default_component_configs = {

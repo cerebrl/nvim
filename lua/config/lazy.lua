@@ -20,26 +20,12 @@ require("lazy").setup({
     -- add linting plugins
     { import = "lazyvim.plugins.extras.linting.eslint" },
     -- add formatting plugins here
-    -- commenting out prettier as it internally uses prettierd,
-    -- which causes file trancation bug:
-    -- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/1609
-    -- { import = "lazyvim.plugins.extras.formatting.prettier" },
-    -- add Util plugins
-    -- { import = "lazyvim.plugins.extras.util.project" },
-    -- { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
-    -- add UI plugins here
-    -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- import/override with your plugins
     { import = "plugins" },
   },
   defaults = {
-    -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
-    -- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
     lazy = true,
-    -- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
-    -- have outdated releases, which may break your Neovim install.
     version = false, -- always use the latest git commit
-    -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
   -- install = { colorscheme = { "tokyonight", "habamax" } },
   checker = { enabled = true }, -- automatically check for plugin updates
@@ -59,7 +45,3 @@ require("lazy").setup({
     },
   },
 })
-
--- Setup additional plugins
-require("telescope").load_extension("file_browser")
-require("telescope").load_extension("project")
