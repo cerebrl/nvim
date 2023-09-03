@@ -4,7 +4,7 @@ return {
     opts = {
       options = {
         -- Always show tabs, even if there's just one open
-        -- This helps with the unsaved changes "dot" visual
+        -- This helps with the unsaved changes "dot" visual in the tab
         always_show_bufferline = true,
         -- Use smaller x for tabs
         buffer_close_icon = "✕",
@@ -14,6 +14,11 @@ return {
         style_preset = require("bufferline").style_preset.no_italic,
       },
     },
+  },
+  {
+    -- Disabling as I never notice this or use it
+    "lewis6991/gitsigns.nvim",
+    enabled = false,
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
