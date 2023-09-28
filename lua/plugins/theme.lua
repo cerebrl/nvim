@@ -33,6 +33,9 @@ return {
         hl.NeoTreeGitUnstaged = { fg = c.fg_dark }
         hl.NeoTreeGitUntracked = { fg = c.fg_dark }
       end,
+      -- Below is helpful when using light mode
+      -- transparent = true,
+      -- use_background = "auto",
     },
   },
 }

@@ -4,4 +4,7 @@
 
 local opt = vim.opt
 
+-- Don't sync clipboard with system
 opt.clipboard = ""
+-- Don't make popup menu transparent
+opt.pumblend = 0

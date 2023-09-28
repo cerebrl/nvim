@@ -32,7 +32,15 @@ vim.keymap.set("n", "<leader>gG", function()
   })
 end, { desc = "Lazygit (cwd)" })
 
--- Telescope file browser
+-- Telescope: modified files
+vim.keymap.set(
+  "n",
+  "<leader>gm",
+  require("plugins.custom.modified-files").git_diff_picker,
+  { desc = "Modifed files (Telescope)" }
+)
+
+-- Telescope: directory/file browser
 vim.api.nvim_set_keymap(
   "n",
   "<leader>fd",
@@ -46,7 +54,7 @@ vim.api.nvim_set_keymap(
   { desc = "Browse cwd (Telescope)", noremap = true }
 )
 
--- Telescope project
+-- Telescope: projects
 vim.api.nvim_set_keymap(
   "n",
   "<leader>fp",
@@ -54,6 +62,6 @@ vim.api.nvim_set_keymap(
   { desc = "Browse projects (Telescope)", noremap = true, silent = true }
 )
 
--- Telescope noice history
+-- Telescope: noice history
 -- https://github.com/folke/noice.nvim/blob/main/doc/noice.nvim.txt#L704
 vim.api.nvim_set_keymap("n", "<leader>snt", ":Noice telescope<CR>", { desc = "Show message history (Telescope)" })
