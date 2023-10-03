@@ -46,3 +46,7 @@ require("lazy").setup({
     },
   },
 })
+
+local T = require("telescope")
+T.load_extension("file_browser")
+T.load_extension("project")

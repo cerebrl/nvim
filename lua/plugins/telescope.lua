@@ -1,3 +1,5 @@
+local Util = require("lazyvim.util")
+
 return {
   {
     "telescope.nvim",
@@ -19,10 +21,21 @@ return {
         },
       },
     },
-    opts = function()
-      local T = require("telescope")
-      T.load_extension("file_browser")
-      T.load_extension("project")
+    opts = function(_, opts)
+      local fb_actions = require("telescope").extensions.file_browser.actions
+      local show_all = function(prompt_bufnr)
+        fb_actions.toggle_hidden(prompt_bufnr)
+        fb_actions.toggle_respect_gitignore(prompt_bufnr)
+      end
+      opts.extensions = {
+        file_browser = {
+          mappings = {
+            ["n"] = {
+              ["."] = show_all,
+            },
+          },
+        },
+      }
     end,
     keys = {
       -- Change buffer list to dropdown with no previewer
@@ -30,6 +43,16 @@ return {
         "<leader>fb",
         "<cmd>Telescope buffers theme=dropdown previewer=false<cr>",
         desc = "Buffers (Telescope)",
+      },
+      {
+        "<leader>fr",
+        Util.telescope("oldfiles", { cwd = vim.loop.cwd() }),
+        desc = "Recent (within project)",
+      },
+      {
+        "<leader>fR",
+        "<cmd>Telescope oldfiles<cr>",
+        desc = "Recent (cross project)",
       },
       {
         "<leader>,",
