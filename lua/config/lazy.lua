@@ -45,8 +45,7 @@ require("lazy").setup({
       },
     },
   },
+  ui = {
+    border = "rounded",
+  },
 })
-
-local T = require("telescope")
-T.load_extension("file_browser")
-T.load_extension("project")

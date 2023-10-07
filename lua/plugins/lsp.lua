@@ -1,17 +1,16 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = function(_, opts)
+    opts = {
       -- Use prettier, rather than prettierd, to avoid the file trancation bug:
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/1609
-      table.insert(opts.ensure_installed, "prettier")
-    end,
+      ensure_installed = { "prettier" },
+    },
   },
   {
     "williamboman/mason-lspconfig.nvim",
     opts = {
-      -- If you want these languages automatically installed
-      -- ensure_installed = { "stylua", "svelte", "tailwindcss" },
+      -- ensure_installed = { "svelte" },
     },
   },
   {
