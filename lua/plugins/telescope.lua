@@ -32,15 +32,14 @@ return {
     },
     opts = function(_, opts)
       local fb_actions = T.extensions.file_browser.actions
-      local show_all = function(prompt_bufnr)
-        fb_actions.toggle_hidden(prompt_bufnr)
-        fb_actions.toggle_respect_gitignore(prompt_bufnr)
-      end
       opts.extensions = {
         file_browser = {
           mappings = {
             ["n"] = {
-              ["."] = show_all,
+              ["."] = function(prompt_bufnr)
+                fb_actions.toggle_hidden(prompt_bufnr)
+                fb_actions.toggle_respect_gitignore(prompt_bufnr)
+              end,
             },
           },
         },

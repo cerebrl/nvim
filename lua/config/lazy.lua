@@ -1,5 +1,6 @@
 -- Initialize LazyVim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
   -- bootstrap lazy.nvim
   -- stylua: ignore
@@ -7,20 +8,21 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
--- Load LazyVim and custom plugins
+-- Load LazyVim and setup plugins
 require("lazy").setup({
   spec = {
-    -- add LazyVim and import its plugins
+    -- add LazyVim's default plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- import any extras modules here
+
+    -- add LazyVim's extra plugins
     { import = "lazyvim.plugins.extras.coding.yanky" },
-    -- add language servers here
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.json" },
     { import = "lazyvim.plugins.extras.lang.tailwind" },
-    -- add linting plugins
     { import = "lazyvim.plugins.extras.linting.eslint" },
-    -- add formatting plugins here
+
+    -- add symbols-outline plugins here
+
     -- import/override with your plugins
     { import = "plugins" },
   },
@@ -28,7 +30,7 @@ require("lazy").setup({
     lazy = true,
     version = false, -- always use the latest git commit
   },
-  -- install = { colorscheme = { "tokyonight", "habamax" } },
+  install = { colorscheme = { "tokyonight" } },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {

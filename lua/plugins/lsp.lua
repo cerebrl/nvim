@@ -13,16 +13,17 @@ return {
       -- ensure_installed = { "svelte" },
     },
   },
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    opts = function(_, opts)
-      local nls = require("null-ls")
-      -- Don't use LazyVim's prettier extra plugin as it uses prettierd,
-      -- which causes file trancation bug:
-      -- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/1609
-      table.insert(opts.sources, nls.builtins.formatting.prettier)
-    end,
-  },
+  -- {
+  --   -- none-ls is not installed by default
+  --   "nvimtools/none-ls.nvim",
+  --   opts = function(_, opts)
+  --     local nls = require("null-ls")
+  --     -- Don't use LazyVim's prettier extra plugin as it uses prettierd,
+  --     -- which causes file trancation bug:
+  --     -- https://github.com/jose-elias-alvarez/null-ls.nvim/discussions/1609
+  --     table.insert(opts.sources, nls.builtins.formatting.prettier)
+  --   end,
+  -- },
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -51,9 +52,10 @@ return {
           root_dir = require("lspconfig").util.root_pattern(".git"),
         },
       },
+      -- The below may no longer be needed now that LazyVim has been updated to v10
       setup = {
         eslint = function()
-          require("lazyvim.util").on_attach(function(client)
+          require("lazyvim.util").lsp.on_attach(function(client)
             if client.name == "eslint" then
               client.server_capabilities.documentFormattingProvider = true
             elseif client.name == "tsserver" then

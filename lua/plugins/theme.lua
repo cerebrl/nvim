@@ -20,22 +20,7 @@ return {
         colors.bg_sidebar = colors.bg_dark
         colors.bg_statusline = colors.bg_dark
         colors.bg_visual = "#1d2640"
-
-        -- Text
-        colors.comment = "#6f7386"
       end,
-      on_highlights = function(hl, c)
-        -- Fix color and remove italics on the Git icons
-        -- Not declaring `italic` withing object resets to normal
-        hl.NeoTreeGitConflict = { fg = c.fg_dark }
-        hl.NeoTreeGitIgnored = { fg = c.fg_dark }
-        hl.NeoTreeGitStaged = { fg = c.fg_dark }
-        hl.NeoTreeGitUnstaged = { fg = c.fg_dark }
-        hl.NeoTreeGitUntracked = { fg = c.fg_dark }
-      end,
-      -- Below is helpful when using light mode
-      -- transparent = true,
-      -- use_background = "auto",
     },
   },
 }

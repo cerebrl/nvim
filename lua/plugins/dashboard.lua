@@ -2,29 +2,30 @@ local Util = require("lazyvim.util")
 
 return {
   {
-    "goolord/alpha-nvim",
-    event = "VimEnter",
-    opts = function(_, dashboard)
-      -- Customize buttons on dashboard
-      dashboard.section.buttons.val = {
-        dashboard.button("p", " " .. " Projects", ":lua require'telescope'.extensions.project.project{}<CR>"),
-        dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
-        dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-        dashboard.button(
-          "r",
-          " " .. " Recent files",
-          ":lua require('telescope.builtin').oldfiles({cwd = vim.loop.cwd() })<CR>"
-        ),
-        dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
-        dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-        dashboard.button("s", " " .. " Restore Session", [[:lua require("persistence").load() <cr>]]),
-        dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
+    "glepnir/dashboard-nvim",
+    opts = function(_, options)
+      options.config.center = {
+        { action = "Telescope find_files", desc = " Find file", icon = "󰍉 ", key = "f" },
+        {
+          action = ":lua require('telescope.builtin').oldfiles({cwd = vim.loop.cwd() })",
+          desc = " Recent files",
+          icon = " ",
+          key = "r",
+        },
+        { action = "ene | startinsert", desc = " New file", icon = " ", key = "n" },
+        { action = "Telescope live_grep", desc = " Find text", icon = " ", key = "g" },
+        { action = "e $MYVIMRC", desc = " Config", icon = " ", key = "c" },
+        { action = 'lua require("persistence").load()', desc = " Restore Session", icon = " ", key = "s" },
+        { action = "LazyExtras", desc = " Lazy Extras", icon = " ", key = "e" },
+        { action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "l" },
+        { action = "qa", desc = " Quit", icon = " ", key = "q" },
       }
-      for _, button in ipairs(dashboard.section.buttons.val) do
-        button.opts.hl = "AlphaButtons"
-        button.opts.hl_shortcut = "AlphaShortcut"
+
+      for _, button in ipairs(options.config.center) do
+        button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
       end
-      return dashboard
+
+      return options
     end,
   },
 }

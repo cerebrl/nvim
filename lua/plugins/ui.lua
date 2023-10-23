@@ -22,6 +22,17 @@ return {
     },
   },
   {
+    "folke/noice.nvim",
+    opts = {
+      cmdline = {
+        format = {
+          search_down = { icon = "󰍉 󰄼 " },
+          search_up = { icon = "󰍉 󰄿 " },
+        },
+      },
+    },
+  },
+  {
     -- Disabling as I never notice this or use it
     "lewis6991/gitsigns.nvim",
     enabled = false,
