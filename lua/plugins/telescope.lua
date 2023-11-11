@@ -5,45 +5,26 @@ local Util = require("lazyvim.util")
 
 return {
   {
-    "telescope.nvim",
+    "nvim-telescope/telescope.nvim",
     dependencies = {
-      {
-        "nvim-telescope/telescope-file-browser.nvim",
-        config = function()
-          T.load_extension("file_browser")
-        end,
-      },
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        build = "make",
-        config = function()
-          T.load_extension("fzf")
-        end,
-      },
-      {
-        "nvim-telescope/telescope-project.nvim",
-        dependencies = {
-          "nvim-telescope/telescope-file-browser.nvim",
-        },
-        config = function()
-          T.load_extension("project")
-        end,
-      },
+      "nvim-lua/plenary.nvim",
     },
     opts = function(_, opts)
       local fb_actions = T.extensions.file_browser.actions
-      opts.extensions = {
-        file_browser = {
-          mappings = {
-            ["n"] = {
-              ["."] = function(prompt_bufnr)
-                fb_actions.toggle_hidden(prompt_bufnr)
-                fb_actions.toggle_respect_gitignore(prompt_bufnr)
-              end,
-            },
+      local show_all = function(prompt_bufnr)
+        fb_actions.toggle_hidden(prompt_bufnr)
+        fb_actions.toggle_respect_gitignore(prompt_bufnr)
+      end
+      -- The below *should* use `extensions` and `file_browser` property to be specific,
+      -- but it gets overwritten or something in LazyVim? Using `defaults` for now.
+      opts.defaults = {
+        mappings = {
+          ["n"] = {
+            ["."] = show_all,
           },
         },
       }
+      return opts
     end,
     keys = {
       -- Change buffer list to dropdown with no previewer
@@ -118,5 +99,37 @@ return {
         mode = { "n" },
       },
     },
+  },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      T.load_extension("file_browser")
+    end,
+  },
+  -- {
+  --   "nvim-telescope/telescope-fzf-native.nvim",
+  --   build = "make",
+  --   dependencies = {
+  --     "nvim-telescope/telescope.nvim",
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  --   config = function()
+  --     T.load_extension("fzf")
+  --   end,
+  -- },
+  {
+    "nvim-telescope/telescope-project.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-telescope/telescope-file-browser.nvim",
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      T.load_extension("project")
+    end,
   },
 }
