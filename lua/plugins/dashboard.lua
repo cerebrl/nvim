@@ -2,7 +2,7 @@ local Util = require("lazyvim.util")
 
 return {
   {
-    "glepnir/dashboard-nvim",
+    "nvimdev/dashboard-nvim",
     opts = function(_, options)
       options.config.center = {
         { action = "Telescope find_files", desc = " Find file", icon = "󰍉 ", key = "f" },

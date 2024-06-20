@@ -12,7 +12,27 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup({
   spec = {
     -- add LazyVim's default plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    {
+      "LazyVim/LazyVim",
+      import = "lazyvim.plugins",
+      opts = function(_, options)
+        -- Reuse symbol types from LazyVim
+        -- Alter for better TypeScript/JavaScript support
+        options.kind_filter = require("lazyvim.config").kind_filter
+
+        -- Add constants to the list for default
+        table.insert(options.kind_filter.default, "Constant")
+
+        -- Iterate over the list and remove properties from list
+        -- http://www.lua.org/manual/5.1/manual.html#pdf-ipairs
+        for idx, val in ipairs(options.kind_filter.default) do
+          if "Property" == val then
+            table.remove(options.kind_filter.default, idx)
+          end
+        end
+        return options
+      end,
+    },
 
     -- add LazyVim's extra plugins
     { import = "lazyvim.plugins.extras.coding.yanky" },

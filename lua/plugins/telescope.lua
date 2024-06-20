@@ -1,7 +1,5 @@
 -- Load telescope and its extensions
 local T = require("telescope")
--- Grab Lazy's Util module
-local Util = require("lazyvim.util")
 
 return {
   {
@@ -41,18 +39,8 @@ return {
         mode = { "n" },
       },
       -- Flip the `r` and `R` mappings from Lazy's default
-      {
-        "<leader>fr",
-        Util.telescope("oldfiles", { cwd = vim.loop.cwd() }),
-        desc = "Recent (within project)",
-        mode = { "n" },
-      },
-      {
-        "<leader>fR",
-        "<cmd>Telescope oldfiles<cr>",
-        desc = "Recent (cross project)",
-        mode = { "n" },
-      },
+      { "<leader>fR", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+      { "<leader>fr", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent (cwd)" },
       -- Telescope: modified Git files
       {
         "<leader>fm",
@@ -98,6 +86,15 @@ return {
         desc = "Show message history (Telescope)",
         mode = { "n" },
       },
+      -- {
+      --   "<leader>ss",
+      --   function()
+      --     require("telescope.builtin").lsp_document_symbols({
+      --       symbols = { "Constant" },
+      --     })
+      --   end,
+      --   desc = "Goto Symbol",
+      -- },
     },
   },
   {
